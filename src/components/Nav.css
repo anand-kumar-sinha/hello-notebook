@@ -1,0 +1,8 @@
+.box :hover{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(35, 35, 197);
+}
+.box{
+    font-weight: 500;
+}
