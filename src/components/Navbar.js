@@ -7,10 +7,6 @@ import { useLocation } from 'react-router-dom';
 const  Navbar = (props) =>  {
 
     let location = useLocation();
-
-
-
-
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
             <div className="container-fluid"><img src="logo.webp" alt="Logo" width="30" hight="24" className="d-inline-block align-text-top mx-1 rounded" />
@@ -27,9 +23,11 @@ const  Navbar = (props) =>  {
                             <Link className={`nav-link ${location.pathname === '/about' ? 'active box' : ''}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" role="switch" onClick={props.btnsc} id="flexSwitchCheckDefault" />
-                        <label className={`form-check-label text-${props.mode === 'light' ? 'dark' : 'light'}`} htmlFor="flexSwitchCheckDefault">{props.mode === 'light' ? 'Enable' : 'Disable'} Dark Mode</label>
+                    <div className="mx-3 my-1">
+                    <i className={`bi bi-${props.mode === 'light'?'moon-stars-fill':'brightness-high-fill text-light'} `} onClick={props.btnsc}></i>
+                    </div>
+                    <div className="">
+                    <Link type="button" className="btn btn-outline-primary mx-1 my-1" to="/login">Login</Link>
                     </div>
                 </div>
             </div>
