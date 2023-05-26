@@ -8,7 +8,7 @@ const  Navbar = (props) =>  {
 
     let location = useLocation();
     return (
-        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode === 'light'?'success bg-opacity-25':'dark'} `}>
             <div className="container-fluid"><img src="logo.webp" alt="Logo" width="30" hight="24" className="d-inline-block align-text-top mx-1 rounded" />
                 <Link className="navbar-brand" to="/">Hello-Note Book</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,10 @@ const  Navbar = (props) =>  {
                         </li>
                     </ul>
                     <div className="mx-3 my-1">
-                    <i className={`bi bi-${props.mode === 'light'?'moon-stars-fill':'brightness-high-fill text-light'} `} onClick={props.btnsc}></i>
+                    <i className={`bi bi-${props.mode === 'dark'?'moon-stars-fill text-light':'brightness-high-fill '} `} onClick={props.btnsc}></i>
                     </div>
                     <div className="">
-                    <Link type="button" className="btn btn-outline-primary mx-1 my-1" to="/login">Login</Link>
+                    <Link type="button" className="btn btn-outline-success btn-sm mx-1 my-1" to="/login">Login</Link>
                     </div>
                 </div>
             </div>

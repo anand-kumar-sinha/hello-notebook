@@ -4,7 +4,8 @@ const router = express.Router()
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-const loginuser= require('../middleware/loginuser');
+const loginuser = require('../middleware/loginuser');
+const { trusted } = require('mongoose');
 
 
 const JWT_SECRET = 'kingisback'
@@ -13,37 +14,44 @@ router.post('/signup', [
     body('name').isLength({ min: 3 }),
     body('email').isEmail(),
     body('password').isLength({ min: 8 })
-], async (req, res) => {
-
+], async (req, res) => 
+{
+    let success = false
     const result = validationResult(req);
 
     if (!result.isEmpty()) {
-        return res.status(400).json({ error: "please enter carefully" });
+        return res.status(400).json({success, error: result.array() });
     }
 
-    let user = await User.findOne({ email: req.body.email })
-    if (user) {
-        return res.status(400).json({ error: "user id already exits" })
-    }
-
-
-    const salt = await bcrypt.genSaltSync(10);
-    const newPass = await bcrypt.hashSync(req.body.password, salt)
-
-    user = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: newPass,
-    })
-
-    const data = {
-        user: {
-            id: user.id
+    try {
+        let user = await User.findOne({ email: req.body.email })
+        if (user) {
+            return res.status(400).json({success, error: "user id already exits" })
         }
-    }
-    const jwtToken = jwt.sign(data, JWT_SECRET)
 
-    res.json({ jwtToken })
+
+        const salt = await bcrypt.genSalt(10);
+        const newPass = await bcrypt.hash(req.body.password, salt)
+
+        user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: newPass,
+        })
+
+        const data = {
+            user: {
+                id: user.id
+            }
+        }
+        const jwtToken = jwt.sign(data, JWT_SECRET)
+
+        success = true
+        res.json({success, jwtToken })
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send("Internal Server Error");
+    }
 
 })
 
@@ -69,7 +77,7 @@ router.post('/login', [
 
         if (!user) {
             success = false
-            return res.status(400).json({success, error: "Enter a valid username or password" })
+            return res.status(400).json({ success, error: "Enter a valid username or password" })
         }
 
         const passwordCompare = await bcrypt.compare(password, user.password)
@@ -85,7 +93,7 @@ router.post('/login', [
         }
         const jwtToken = jwt.sign(data, JWT_SECRET)
         success = true
-        res.json({success, jwtToken })
+        res.json({ success, jwtToken })
     } catch (error) {
         console.error(error.message)
         res.status(500).send("Internal server error")
