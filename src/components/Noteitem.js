@@ -14,8 +14,8 @@ function Noteitem(props) {
                         <h5 className="card-title">{note.tittle}</h5>
                         <h6 className="card-subtitle mb-2 text-secondary">{note.tag}</h6>
                         <p className="card-text">{note.description}</p>
-                        <i className="bi bi-trash3-fill" onClick={()=>{deleteNote(note._id)}}></i>
-                        <i className="bi bi-pencil-square mx-3" onClick={()=>{updatenote(note)}}></i>
+                        <i className="bi bi-trash3-fill" onClick={()=>{deleteNote(note._id);props.showAlert('Note Deleted successfully','success')}}></i>
+                        <i className="bi bi-pencil-square mx-3" onClick={()=>{updatenote(note);}}></i>
                     </div>
                 </div>
             </div>

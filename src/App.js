@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Webfoot from "./components/Webfoot";
 import Login from "./components/Login";
 import NoteState from "./context/notes/NotesState";
+import Alert from "./components/Alert";
 import { useState } from "react";
 import {
   BrowserRouter, Routes, Route
@@ -23,17 +24,29 @@ function App() {
       document.body.style.background = 'white'
     }
   }
+
+  const [alert, setAlert] = useState(null)
+  const showAlert = (message, type)=>{
+    setAlert ({
+      msg: message,
+      type: type
+    })
+    setTimeout(()=>{
+      setAlert(null)
+    },2000)
+  }
   return (
     <>
       <NoteState>
         <BrowserRouter>
           <Navbar btnsc={btnsc} mode={mode} />
+          <Alert alert={alert}/>
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home mode={mode} />} />
+              <Route path="/" element={<Home mode={mode} showAlert={showAlert}/>} />
               <Route path="/about" element={<About mode = {mode} />} />
-              <Route path="/login" element={<Login  mode = {mode} />} />
-              <Route path="/signup" element={<Signup  mode = {mode} />} />
+              <Route path="/login" element={<Login  mode = {mode} showAlert={showAlert}/>} />
+              <Route path="/signup" element={<Signup  mode = {mode} showAlert={showAlert}/>} />
             </Routes>
           </div>
           <Webfoot mode={mode}/>

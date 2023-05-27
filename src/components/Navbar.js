@@ -17,10 +17,10 @@ const  Navbar = (props) =>  {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0" >
                         <li className="nav-item box">
-                            <Link className={`nav-link  ${location.pathname === '/' ? 'active box' : ''}`} to="/" >Home</Link>
-                        </li>
+                            <Link className={`nav-link  ${location.pathname === '/' ? 'active box rounded-5 rounded-top-0 bg-warning' : ''}`} to="/" >Home</Link>
+                        </li> 
                         <li className="nav-item box">
-                            <Link className={`nav-link ${location.pathname === '/about' ? 'active box' : ''}`} to="/about">About</Link>
+                            <Link className={`nav-link ${location.pathname === '/about' ? 'active box rounded-5 rounded-top-0 bg-warning' : ''} `} to="/about">About</Link>
                         </li>
                     </ul>
                     <div className="mx-3 my-1">

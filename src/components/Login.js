@@ -18,12 +18,12 @@ function Login(props) {
     })
     const json = await response.json()
     if (json.success) {
-      alert("Welcome, You are Logined")
       localStorage.setItem('token', json.jwtToken)
       navigate('/');
+      props.showAlert("Welcome, You are Logined",'success')
     }
     else {
-      alert("Enter a valid username or password")
+      props.showAlert('Enter a valid username or password','danger')
     }
   }
 
@@ -48,19 +48,19 @@ function Login(props) {
           <img src="/image/1.gif" className='img-fluid' alt="" />
 
         </div>
-        <div className="col-md-7 my-3">
+        <div className={`col-md-7 rounded-4  shadow-lg  bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`}>
 
           <form onSubmit={handleSubmit} >
             <div className="mb-3">
               <label htmlFor="email" className={`form-label text-${props.mode === 'light' ? 'dark' : 'light'}`}>Email address</label>
-              <input type="email" className={`form-control text-${props.mode === 'light' ? 'dark' : 'light'} bg-${props.mode === 'light' ? 'success bg-opacity-10' : 'dark'}`} placeholder='Enter your E-mail' name="email" id="email" aria-describedby="emailHelp" value={login.email} onChange={onChange} />
+              <input type="email" className={`form-control text-${props.mode === 'light' ? 'dark' : 'light'} bg-${props.mode === 'light' ? 'light' : 'dark'}`} placeholder='Enter your E-mail' name="email" id="email" aria-describedby="emailHelp" value={login.email} onChange={onChange} />
               <div id="emailHelp" className={`form-text text-${props.mode === 'light' ? 'dark' : 'light'}`}>We'll never share your email with anyone else.</div>
             </div>
             <div className="mb-3">
               <label htmlFor="password" className={`form-label text-${props.mode === 'light' ? 'dark' : 'light'}`}>Password</label>
               <div className="input-group has-validation">
-                <input type={passwordShown ? "text" : "password"} className={`form-control text-${props.mode === 'light' ? 'dark' : 'light'} bg-${props.mode === 'light' ? 'success bg-opacity-10' : 'dark'}`} id="password" name='password' onChange={onChange} />
-                <span className={`input-group-text bg-${props.mode === 'dark' ? 'dark' : 'success bg-opacity-10'} text-${props.mode === 'dark' ? 'light' : 'dark'}`}><i className={`bi ${passwordShown === false ? 'bi-eye' : 'bi-eye-slash'} `} placeholder='Enter your Password' onChange={onChange} value={login.password} onClick={togglePassword}></i></span>
+                <input type={passwordShown ? "text" : "password"} className={`form-control text-${props.mode === 'light' ? 'dark' : 'light'} bg-${props.mode === 'light' ? 'light' : 'dark'}`} id="password" name='password' onChange={onChange} />
+                <span className={`input-group-text bg-${props.mode === 'dark' ? 'dark' : 'light'} text-${props.mode === 'dark' ? 'light' : 'dark'}`}><i className={`bi ${passwordShown === false ? 'bi-eye' : 'bi-eye-slash'} `} placeholder='Enter your Password' onChange={onChange} value={login.password} onClick={togglePassword}></i></span>
               </div>
             </div>
             <button type="submit" className="btn btn-outline-success my-2">Login</button>

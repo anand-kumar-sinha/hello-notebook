@@ -20,12 +20,12 @@ function Signup(props) {
     })
     const json = await response.json()
     if (json.success) {
-      alert("Successfully Signup, Thanks for joining us")
       localStorage.setItem('token', json.jwtToken)
       navigate('/');
+      props.showAlert("Successfully Signup, Thanks for joining us", 'success')
     }
     else {
-      alert("Enter a valid username or password")
+      props.showAlert('Enter carefully','danger')
     }
   }
 
@@ -54,7 +54,7 @@ function Signup(props) {
           <img src="/image/2.gif" className='img-fluid' alt="" />
 
         </div>
-        <div className={`col-md-7 rounded-4 border-3 border-success bg-opacity-25 my-3 card p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`}>
+        <div className={`col-md-7 rounded-4  shadow-lg  bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`}>
           <form onSubmit={handleSubmit} className={`needs-validation text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
 
             <div className="row g-3">

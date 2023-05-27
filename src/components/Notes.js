@@ -22,6 +22,7 @@ const Notes = (props) => {
     const handleClick = (e) =>{
         editNote(note.id, note.etittle, note.edescription ,note.etag)
         refclose.current.click()
+        props.showAlert('Note Update successfully','success')
       }
   
       const onChange = (e) =>{
@@ -33,7 +34,7 @@ const Notes = (props) => {
     return (
         <>
 
-            <AddNote mode={props.mode} />
+            <AddNote mode={props.mode} showAlert={props.showAlert}/>
 
 
             <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -71,7 +72,7 @@ const Notes = (props) => {
             <h2 className={`my-3 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Your Notes is here :</h2>
             <div className={`row text-${props.mode === 'dark' ? 'light' : 'dark'} `}>
                 {notes.map((note) => {
-                    return <Noteitem key={note._id} note={note} updatenote={updatenote} mode={props.mode} />
+                    return <Noteitem key={note._id} note={note} updatenote={updatenote} showAlert={props.showAlert} mode={props.mode} />
                 })}
             </div>
         </>
