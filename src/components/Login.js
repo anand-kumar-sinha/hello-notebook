@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import './card.css'
 
 function Login(props) {
 
@@ -48,10 +49,10 @@ function Login(props) {
           <img src="/image/1.gif" className='img-fluid' alt="" />
 
         </div>
-        <div className={`col-md-7 rounded-4  shadow-lg  bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`}>
+        <div className={`col-md-7 rounded-4  bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`} id='card-shadow'>
 
           <form onSubmit={handleSubmit} >
-            <div className="mb-3">
+            <div className="mb-3" >
               <label htmlFor="email" className={`form-label text-${props.mode === 'light' ? 'dark' : 'light'}`}>Email address</label>
               <input type="email" className={`form-control text-${props.mode === 'light' ? 'dark' : 'light'} bg-${props.mode === 'light' ? 'light' : 'dark'}`} placeholder='Enter your E-mail' name="email" id="email" aria-describedby="emailHelp" value={login.email} onChange={onChange} />
               <div id="emailHelp" className={`form-text text-${props.mode === 'light' ? 'dark' : 'light'}`}>We'll never share your email with anyone else.</div>

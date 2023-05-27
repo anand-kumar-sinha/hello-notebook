@@ -39,7 +39,7 @@ function App() {
     <>
       <NoteState>
         <BrowserRouter>
-          <Navbar btnsc={btnsc} mode={mode} />
+          <Navbar btnsc={btnsc} mode={mode} showAlert={showAlert}/>
           <Alert alert={alert}/>
           <div className="container">
             <Routes>

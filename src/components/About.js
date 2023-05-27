@@ -53,8 +53,7 @@ function About(props) {
           </p>
           <a href="mailto:shivamkrs777@gmail.com" target='_blank' rel="noreferrer"><button type="button" className="btn btn-outline-success">Contact Us</button></a>
         </div>
-
-        <h3 style={{ marginTop: '25px', marginBottom: '-10px' }}>OUR TEAMMATES (NOOB CODER)</h3>
+        <h3 style={{ marginTop: '25px', marginBottom: '-10px' }}>OUR TEAMMATES <a href="https://chat.whatsapp.com/LeYl5nXuhEaEJ2YeDQ1oNh" className="text-success">(NOOB-CODER)</a></h3>
         <div className="col mx-3 my-3">
           <img src="/image/ritesh.jpg" alt="" width="140" height="140" className="img-fluid img-thumbnail bd-placeholder-img rounded-circle" />
           <h2 className={`my-1 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Ritesh Kumar</h2>
@@ -71,6 +70,19 @@ function About(props) {
         <div className="col mx-3 my-3">
           <img src="/image/anu.jpg" alt="" width="140" height="140" className="img-fluid img-thumbnail bd-placeholder-img rounded-circle" />
           <h2 className={`my-1 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Anurag Sharma</h2>
+          <h4 className={`opacity-75 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Supporter</h4>
+          <p className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
+            Student of GOVT. Polytechnic, GAYA
+            <br />
+            Work as a Supporter in <strong className="text-danger">Hello-Note Book</strong>
+            <br />
+            Basic of <strong className="text-danger">HTML, CSS, C, Python</strong>
+          </p>
+          <a href="mailto:riteshkumar8582@gmail.com" target='_blank' rel="noreferrer"><button type="button" className="btn btn-outline-success">Contact Us</button></a>
+        </div>
+        <div className="col mx-3 my-3">
+          <img src="/image/sandeep.jpg" alt="" width="140" height="140" className="img-fluid img-thumbnail bd-placeholder-img rounded-circle" />
+          <h2 className={`my-1 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Sandeep Kumar</h2>
           <h4 className={`opacity-75 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>Supporter</h4>
           <p className={`text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
             Student of GOVT. Polytechnic, GAYA

@@ -2,13 +2,20 @@ import React from 'react'
 import './Nav.css';
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
-const  Navbar = (props) =>  {
+const Navbar = (props) => {
+    const navigate = useNavigate();
 
+    const handleLogout =()=>{
+        localStorage.removeItem('token')
+        props.showAlert("Logout Successfully",'success')
+        navigate('/login');
+    }
     let location = useLocation();
     return (
-        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode === 'light'?'success bg-opacity-25':'dark'} `}>
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode === 'light' ? 'success bg-opacity-25' : 'dark'} `}>
             <div className="container-fluid"><img src="logo.webp" alt="Logo" width="30" hight="24" className="d-inline-block align-text-top mx-1 rounded" />
                 <Link className="navbar-brand" to="/">Hello-Note Book</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,16 +25,18 @@ const  Navbar = (props) =>  {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0" >
                         <li className="nav-item box">
                             <Link className={`nav-link  ${location.pathname === '/' ? 'active box rounded-5 rounded-top-0 bg-warning' : ''}`} to="/" >Home</Link>
-                        </li> 
+                        </li>
                         <li className="nav-item box">
                             <Link className={`nav-link ${location.pathname === '/about' ? 'active box rounded-5 rounded-top-0 bg-warning' : ''} `} to="/about">About</Link>
                         </li>
                     </ul>
                     <div className="mx-3 my-1">
-                    <i className={`bi bi-${props.mode === 'dark'?'moon-stars-fill text-light':'brightness-high-fill '} `} onClick={props.btnsc}></i>
+                        
+                        <i className={`bi bi-${props.mode === 'dark' ? 'moon-stars-fill text-light' : 'brightness-high-fill '} `} onClick={props.btnsc}></i>
                     </div>
                     <div className="">
-                    <Link type="button" className="btn btn-outline-success btn-sm mx-1 my-1" to="/login">Login</Link>
+                        {!localStorage.getItem('token')?
+                        <Link type="button" className="btn btn-outline-success btn-sm mx-1 my-1" to="/login">Login</Link>:<button type="button" onClick={handleLogout} className="btn btn-outline-success btn-sm mx-1 my-1">Logout</button>}
                     </div>
                 </div>
             </div>

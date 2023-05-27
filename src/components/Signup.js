@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
+import './card.css'
 
 
 function Signup(props) {
@@ -54,7 +55,7 @@ function Signup(props) {
           <img src="/image/2.gif" className='img-fluid' alt="" />
 
         </div>
-        <div className={`col-md-7 rounded-4  shadow-lg  bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`}>
+        <div className={`col-md-7 rounded-4 bg-opacity-25 my-3 p-3 bg-${props.mode === 'light' ? 'success' : 'dark'}`} id='card-shadow'>
           <form onSubmit={handleSubmit} className={`needs-validation text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
 
             <div className="row g-3">
