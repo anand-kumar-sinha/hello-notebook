@@ -4,7 +4,7 @@ import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
 
-  const host = 'http://localhost:5000'
+  const host = 'https://note-backend-mej8.vercel.app'
 
   const noteInitial = []
 
